@@ -1,0 +1,25 @@
+{
+    "name": "resco-crm-automation",
+    "version": "1.0.0",
+    "description": "Resco CRM Automation Scripts",
+    "main": "index.ts",
+    "type": "module",
+    "scripts": {
+        "dev": "node --env-file=.env --experimental-strip-types --disable-warning=ExperimentalWarning index.ts",
+        "test": "mocha 'tests/**/*.test.js'",
+        "test-watch": "nodemon --watch 'tests/**/*.test.js' --exec npm test"
+    },
+    "keywords": [],
+    "author": "samir.gupta",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/prompt-sync": "^4.2.3",
+        "mocha": "^11.7.5",
+        "nodemon": "^3.1.11"
+    },
+    "dependencies": {
+        "fast-xml-parser": "^5.3.3",
+        "prompt-sync": "^4.2.0",
+        "xml-formatter": "^3.6.7"
+    }
+}
