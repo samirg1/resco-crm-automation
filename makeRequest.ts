@@ -1,6 +1,6 @@
 import { XMLParser } from "fast-xml-parser";
-import { buildEntityXml } from "./utils/buildEntityXML.ts";
 import { cookies } from "./index.ts";
+import { buildEntityXml } from "./utils/buildEntityXML.ts";
 
 const BLUE = "\x1b[34m";
 const RESET = "\x1b[0m";
@@ -18,7 +18,7 @@ export async function addOrUpdate({
 }: {
     entityName: "equipment" | "appointment";
     id?: string | undefined;
-        attributes: Record<string, any>;
+    attributes: Record<string, any>;
     checkOnly: boolean;
 }) {
     const xmlBody = buildEntityXml({
@@ -27,31 +27,20 @@ export async function addOrUpdate({
         attributes,
     });
 
-
     if (checkOnly) return console.log(colorXmlTags(xmlBody));
     const data = await makeRequest(xmlBody, "/Execute");
     console.log(data);
     const parser = new XMLParser();
     const jObj = parser.parse(data || "");
     const result = jObj?.Response?.Result;
-    if (result) console.log("\x1b[32m%s\x1b[0m", `Success: ${jObj?.Response?.Result}`);
+    if (result)
+        console.log("\x1b[32m%s\x1b[0m", `Success: ${jObj?.Response?.Result}`);
     else console.log("\x1b[31m%s\x1b[0m", `Fail: ${jObj?.Response?.Result}`);
-}
-
-export async function getData(xmlBody: string) {
-    const data = await makeRequest(xmlBody);
-    const parser = new XMLParser();
-    const jObj = parser.parse(data || "");
-    const entities = jObj?.EntitySet?.Entities?.Entity;
-
-    // pretty print the XML response
-    console.log(entities);
-    console.log("Total records:", entities.length);
 }
 
 export async function makeRequest(
     xmlBody: string,
-    extraURL: "/Execute" | "" = ""
+    extraURL: "/Execute" | "" = "",
 ): Promise<string | undefined> {
     const url = `https://mobiletech.aidacare.com.au/rest/v1/data/handr${extraURL}`;
     const method = "POST";

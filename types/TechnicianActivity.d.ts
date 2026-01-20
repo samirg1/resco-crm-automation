@@ -1,0 +1,3 @@
+type TechnicianActivity = {
+    versionnumber: string;
+};

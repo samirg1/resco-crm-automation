@@ -1,16 +1,9 @@
 import {
-    createBulkEquipmentFromCSV,
     createEquipment,
     transformCSVDataToEquipmentData,
 } from "./createEquipment/index.ts";
-
-import { getData } from "./makeRequest.ts";
-import { body2, equipmentBody } from "./testXMLBodies.ts";
-
-getData;
-equipmentBody;
-transformCSVDataToEquipmentData;
-createEquipment;
+import { getAppointments } from "./getData/getAppointments.ts";
+import { getEquipment } from "./getData/getEquipment.ts";
 
 process.loadEnvFile(".env");
 export const cookies = {
@@ -29,7 +22,29 @@ const includeOnly: string[] = [];
 const exclude: string[] = [];
 
 async function main() {
-    return await getData(equipmentBody(location.locationid));
+    // const appointments = (await getAppointments("SGUPTA")).map(
+    //     (appointment) => ({
+    //         startdate: appointment.startdate,
+    //         gpcustomernumber: appointment.location.gpcustomernumber,
+    //         locationid: appointment.call.locationid,
+    //         city: appointment.location.city,
+    //         employeename: appointment.employee.employeename,
+    //     }),
+    // );
+    // return console.log(appointments, `\nTotal records: ${appointments.length}`);
+
+    // const equipment = (await getEquipment(location.locationid)).map(
+    //     (equipment) => ({
+    //         barcode: equipment.barcode,
+    //         manufacturerName: equipment.manufacturer.name,
+    //         modelnumber: equipment.modelnumber,
+    //         serialnumber: equipment.serialnumber,
+    //         room: equipment.gpsublocationid,
+    //         equipmentTypeName: equipment.equipmenttype.name,
+    //         locationName: equipment.location.name,
+    //     }),
+    // );
+    // return console.log(equipment, `\nTotal records: ${equipment.length}`);
     // return await createBulkEquipmentFromCSV({
     //     csvFileName: "export (49).csv",
     //     locationData: location,
