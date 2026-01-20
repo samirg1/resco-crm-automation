@@ -27,13 +27,13 @@ export function transformCSVDataToEquipmentData(
 ): EquipmentData[] {
     const csvData = extractDataFromCSV(csvFileName);
     return csvData.map((row) => ({
-        logicalName: row["BMI Number"].slice(0, 20),
-        description: row["ECRI Description"].slice(0, 20),
-        manufacturer: row.Manufacturer.slice(0, 20),
-        model: row.Model.slice(0, 20),
-        serialNumber: row["Serial No."].slice(0, 20),
-        room: row.Room.slice(0, 20),
-        manufacturerDate: row["Install Date"].slice(0, 20),
+        logicalName: row["BMI Number"],
+        description: row["ECRI Description"],
+        manufacturer: row.Manufacturer,
+        model: row.Model,
+        serialNumber: row["Serial No."],
+        room: row.Room,
+        manufacturerDate: row["Install Date"],
     }));
 }
 
@@ -48,6 +48,13 @@ export async function createEquipment(
     const manufacturerid = getManufacturerLine(equipmentData.manufacturer);
     const swl = getSWL(equipmentData.description);
 
+    const shortenedEquipmentData = Object.fromEntries(
+        Object.entries(equipmentData).map(([key, value]) => [
+            key,
+            value ? value.slice(0, 20) : value,
+        ]),
+    ) as EquipmentData;
+
     await addOrUpdate({
         entityName: "equipment",
         attributes: {
@@ -55,17 +62,16 @@ export async function createEquipment(
             manufacturerid,
             gpcustomernumber: locationData.gpcustomernumber,
             locationid: locationData.locationid,
-            serialnumber: equipmentData.serialNumber,
-            modelnumber: equipmentData.model,
-            equipmentdescription2: equipmentData.description,
-            gpsublocationid: equipmentData.room,
+            serialnumber: shortenedEquipmentData.serialNumber,
+            modelnumber: shortenedEquipmentData.model,
+            equipmentdescription2: shortenedEquipmentData.description,
+            gpsublocationid: shortenedEquipmentData.room,
 
-            barcode: `GENERATED-${equipmentData.logicalName}`, // generated part for searching, goes into unassigned, assign and search by logicalname, if not found during service search by generated to re-unassign
-            gpuserdefine1a: equipmentData.logicalName, // customer barcode
+            barcode: `GENERATED-${shortenedEquipmentData.logicalName}`, // generated part for searching, goes into unassigned, assign and search by logicalname, if not found during service search by generated to re-unassign
+            gpuserdefine1a: shortenedEquipmentData.logicalName, // customer barcode
             gpuserdefine2a: "Good", // condition
             gpuserdefine4a: swl, // swl
-            gpuserdefine9a:
-                equipmentData.manufacturerDate || "2020-01-01T13:00:00Z", // manufacture date
+            gpuserdefine9a: "2016-01-01T13:00:00Z", // manufacture date
 
             componentquantity: 0,
             createdby:
@@ -123,8 +129,9 @@ export async function createBulkEquipmentFromCSV(
         if (answer !== "YES") return console.log("Aborting.");
     }
 
-    for (const equipmentData of filteredEquipmentDataList) {
-        console.log("Creating equipment:", equipmentData.logicalName);
+    for (let i = 0; i < filteredEquipmentDataList.length; i++) {
+        const equipmentData = filteredEquipmentDataList[i];
+        console.log(`Creating equipment ${i+1}/${filteredEquipmentDataList.length}:`, equipmentData.logicalName);
         await createEquipment(equipmentData, data.locationData, data.checkOnly);
     }
 }

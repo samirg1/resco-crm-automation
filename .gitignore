@@ -4,4 +4,4 @@ dist
 .vscode
 log.txt
 testXMLBodies.ts
-export.csv
+**.csv

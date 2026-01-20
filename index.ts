@@ -5,7 +5,7 @@ import {
 } from "./createEquipment/index.ts";
 
 import { getData } from "./makeRequest.ts";
-import { equipmentBody } from "./testXMLBodies.ts";
+import { body2, equipmentBody } from "./testXMLBodies.ts";
 
 getData;
 equipmentBody;
@@ -19,23 +19,24 @@ export const cookies = {
 };
 
 const location = {
-    gpcustomernumber: "BENETAS-BROUGHT",
+    // call.{}
+    gpcustomernumber: "CAMGRO01",
     locationid:
-        "location:f5f6827a-9ef7-4209-bdbd-f0efd2204676:PRIMARY - Benetas - Broughton Hall",
+        "location:7132ed53-5cdc-43e7-8550-54e74cdf45ca:1010 NEPEAN HW - ABLE - 1010 NEPEAN HIGHWAY",
 };
 
-const includeOnly: string[] = ["1783_0116", "361530"];
+const includeOnly: string[] = [];
 const exclude: string[] = [];
 
 async function main() {
-    // return await getData(equipmentBody);
-    return await createBulkEquipmentFromCSV({
-        csvFileName: "export.csv",
-        locationData: location,
-        includeOnly,
-        exclude,
-        checkOnly: true,
-    });
+    return await getData(equipmentBody(location.locationid));
+    // return await createBulkEquipmentFromCSV({
+    //     csvFileName: "export (49).csv",
+    //     locationData: location,
+    //     includeOnly,
+    //     exclude,
+    //     checkOnly: false,
+    // });
 }
 
 main();
