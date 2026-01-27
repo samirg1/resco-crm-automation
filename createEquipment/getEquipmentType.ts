@@ -14,6 +14,11 @@ const equipmentTypes: {
         searchTexts: ["mattress"],
     },
     {
+        id: "3a537bc1-55a2-4c74-a347-12fca24df975",
+        name: "WALL CHARGER",
+        searchTexts: ["charger"],
+    },
+    {
         id: "c5469cb2-c71c-4b8b-9031-e176aef5b9c6",
         name: "AIR MATTRESS PUMP",
         searchTexts: ["pump"],
@@ -22,6 +27,22 @@ const equipmentTypes: {
         id: "4c522e09-f3e2-4b75-b55b-3ad64fa7624a",
         name: "BATTERY PACK",
         searchTexts: ["battery"],
+    },
+    {
+        id: '7715e6a9-0cc4-434a-b8e3-f82a1fb5b122',
+        name: 'CHANGE TABLE/PLINTH BED MANUAL',
+        searchTexts: ["table", "bath trolley", "bath"],
+    },
+    {
+        id: "d2a293fe-82f1-4476-9779-91a9d491e2b1",
+        name: "COMMERCIAL TROLLEY",
+        searchTexts: [
+            "table",
+            "2 tier trolley",
+            "UTILITY TROLLEY",
+            "overbed",
+            "2 tier",
+        ],
     },
     {
         id: "86039142-56f2-49c6-83c6-f0ed2979b196",
@@ -38,11 +59,7 @@ const equipmentTypes: {
         name: "CEILING HOIST TRACK",
         searchTexts: ["track"],
     },
-    {
-        id: "16866a81-54c3-4e5c-917a-fb2a22ea22f0",
-        name: "CHANGE TABLE",
-        searchTexts: ["table", "bath trolley"],
-    },
+
     {
         id: "39a57b5c-40c0-49a2-9404-02f3320afbcf",
         name: "LIFTER",
@@ -50,20 +67,8 @@ const equipmentTypes: {
     },
 
     {
-        id: "27efedc6-67d6-429f-99ed-abc67ffd2f40",
-        name: "OVER BED TABLE",
-        searchTexts: [
-            "table",
-            "2 tier trolley",
-            "UTILITY TROLLEY",
-            "overbed",
-            "2 tier",
-        ],
-    },
-
-    {
-        id: "631b787d-ba93-4f56-bcd5-3ba2e1db9493",
-        name: "SHOWER COMMODE",
+        id: "82a6f493-c8da-4503-b5fa-a352faa265d3",
+        name: "SHOWER COMMODE MANUAL",
         searchTexts: ["commode"],
     },
 
@@ -76,12 +81,6 @@ const equipmentTypes: {
         id: "44e88aa6-7dbf-46f9-890a-da4f7ac988ec",
         name: "STANDING FRAME",
         searchTexts: ["walker"],
-    },
-
-    {
-        id: "3a537bc1-55a2-4c74-a347-12fca24df975",
-        name: "WALL CHARGER",
-        searchTexts: ["charger"],
     },
     {
         id: "0f490dcd-e114-4ff0-b5f7-494d41f7798c",

@@ -33,6 +33,7 @@ type Appointment = {
     employee: Employee;
     appointmentstatus: AppointmentStatus;
     location: LocationData;
+    customer: Customer,
     call: Call;
     technicianactivity: TechnicianActivity;
 };

@@ -1,4 +1,4 @@
-type LocationData = {
+type LocationData<Direct extends boolean = false> = {
     address1: string;
     affiliate: string;
     branch: string;
@@ -28,4 +28,5 @@ type LocationData = {
     statuscode: number;
     versionnumber: number;
     zip: number;
+    customer: Direct extends true ? Customer : never;
 };

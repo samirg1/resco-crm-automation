@@ -22,6 +22,9 @@ export const getAppointments = async (
         </link-entity>
         <link-entity name="location" from="id" to="locationid" link-type="outer" alias="location">
             <all-attributes />
+            <link-entity name="customer" from="id" to="customerid" link-type="outer" alias="customer">
+                <all-attributes />
+            </link-entity>
         </link-entity>
         <link-entity name="servicecall" from="id" to="servicecallid" link-type="outer" alias="call">
             <all-attributes />
