@@ -30,7 +30,7 @@ const equipmentTypes: {
     },
     {
         id: '7715e6a9-0cc4-434a-b8e3-f82a1fb5b122',
-        name: 'CHANGE TABLE/PLINTH BED MANUAL',
+    name: 'CHANGE TABLE/PLINTH BED MANUAL',
         searchTexts: ["table", "bath trolley", "bath"],
     },
     {
@@ -50,14 +50,14 @@ const equipmentTypes: {
         searchTexts: ["bed"],
     },
     {
-        id: "e7e6578d-8694-4e10-835c-003b109fadde",
-        name: "CEILING HOIST",
-        searchTexts: ["ceiling"],
-    },
-    {
         id: "1506183a-f278-4afe-923a-fb5e83729793",
         name: "CEILING HOIST TRACK",
         searchTexts: ["track"],
+    },
+    {
+        id: "e7e6578d-8694-4e10-835c-003b109fadde",
+        name: "CEILING HOIST",
+        searchTexts: ["ceiling"],
     },
 
     {

@@ -10,12 +10,12 @@ export const getAppointments = async (
         <all-attributes />
         <link-entity name="appointmentstatus" from="id" to="appointmentstatusid" link-type="inner" alias="appointmentstatus">
             <all-attributes />
-            <filter type="and">
+            <!--<filter type="and">
                 <condition attribute="name" operator="not-in">
                     <value>COMPLETE</value>
                     <value>RE-ASSIGN</value>
                 </condition>
-            </filter>
+            </filter> -->
         </link-entity>
         <link-entity name="employee" from="id" to="employeeid" link-type="outer" alias="employee">
             <all-attributes />

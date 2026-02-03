@@ -17,17 +17,17 @@ export function buildEntityXml({
     attributes: Record<string, any>;
 }) {
     const action = id ? "Update" : "Create";
-    const attrXml = Object.entries(attributes)
+    const attrXml = "  " + Object.entries(attributes)
         .map(([key, value]) => {
             if (value == null) return "";
-            return `<${key}>${escapeXml(value)}</${key}>\n\t`;
+            return `<${key}>${escapeXml(value)}</${key}>`;
         })
-        .join("");
+        .join("\n  ");
 
     return `
 <Entity xmlns="http://schemas.resco.net/XRM/Execute" EntityName="${entityName}" Action="${action}">
-  ${id ? `<id>${id}</id>` : ""}
-  ${attrXml}
+${id ? `  <id>${id}</id>` : ""}
+${attrXml}
 </Entity>
 `.trim();
 }

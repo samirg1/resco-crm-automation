@@ -3,11 +3,19 @@ import { cookies } from "./index.ts";
 import { buildEntityXml } from "./utils/buildEntityXML.ts";
 
 const BLUE = "\x1b[34m";
+const GREEN = "\x1b[32m";
+const YELLOW = "\x1b[33m";
 const RESET = "\x1b[0m";
 
 function colorXmlTags(xml: string) {
     // color anything that looks like an XML tag
-    return xml.replace(/(<\/?[^>]+>)/g, `${BLUE}$1${RESET}`);
+    const blued = xml.replace(/(<\/?[^>]+>)/g, `${BLUE}$1${RESET}`);
+
+    // replace entity tag with yellow
+    const yellowed = blued.replace(/(<\/?Entity[^>]*>)/g, `${YELLOW}$1${RESET}`);
+
+    // replace id tag with green
+    return yellowed.replace(/(<\/?id[^>]*>)/g, `${GREEN}$1${RESET}`);
 }
 
 export async function addOrUpdate({
@@ -37,6 +45,7 @@ export async function addOrUpdate({
         console.log("\x1b[32m%s\x1b[0m", `Success: ${jObj?.Response?.Result}`);
     else console.log("\x1b[31m%s\x1b[0m", `Fail: ${jObj?.Response?.Result}`);
 }
+
 
 export async function makeRequest(
     xmlBody: string,
